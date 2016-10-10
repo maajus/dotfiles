@@ -1,3 +1,8 @@
+if $TERM == "xterm-256color"
+  set t_Co=256
+endif
+
+
 set nocompatible
 
 "set the runtime path to include Vundle and initialize
@@ -7,6 +12,7 @@ call vundle#begin()
 "let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'vim-airline/vim-airline'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'godlygeek/csapprox'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -44,9 +50,20 @@ Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'aklt/plantuml-syntax'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'morhetz/gruvbox'
+Plugin 'mileszs/ack.vim'
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 "All of your Plugins must be added before the following line
 call vundle#end()
+
+"enable ag fuzzy searcher
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 runtime macros/matchit.vim
 
@@ -119,7 +136,9 @@ endif
 "tell the term has 256 colors
 "set t_Co=256
 
-colorscheme github
+"set g:airline_theme 'gruvbox'
+colorscheme gruvbox
+set background=dark
 
 "hide buffers when not displayed
 set hidden
@@ -425,8 +444,7 @@ function! s:FocusSpecToggle() abort
 
     if match(getline("."), 'focus: true') == -1
         s/.*\zs\s\+do/, focus: true do/
-    else
-        s/,\s*focus: true\s*do/ do/
+
     endif
 
     call setpos(".", oldpos)
@@ -495,3 +513,27 @@ function! s:toggleNotes() abort
         doautocmd bufreadpost %
     endif
 endfunction
+"Custom maps
+nnoremap ]b :bn<cr>
+nnoremap [b :bp<cr>
+nnoremap gd :bd<cr> 
+" Get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
+"move between windows
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+"change the mapleader from \ to ,
+let mapleader=","
+"search selected text in visual mode
+vnoremap // y/<C-R>"<CR>
+"silent make command
+nnoremap <leader>m : silent make\|redraw!\|cc<CR>
+" Better copy paste
+" set pastetoggle=<F2>
+set clipboard=unnamed
+
