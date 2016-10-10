@@ -1,0 +1,108 @@
+URxvt.termName: rxvt
+URxvt.transparent: true
+URxvt.shading:       20 
+URxvt.inheritPixmap: False
+URxvt.scrollBar: false
+URxvt.saveLines: 10000
+URxvt.urlLauncher: firefox
+URxvt.cursorBlink: true
+URxvt.geometry: 100x35
+
+URxvt.perl-ext-common: default,keyboard-select,clipboard,url-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+
+Xft.dpi:        96
+Xft.antialias:  true
+!Xft.rgba:       rgb
+Xft.hinting:    true
+!Xft.hinstyle:   hintslight
+!URxvt.letterSpace:	 -1
+
+urxvt.font:             xft:DejaVu Sans Mono:pixelsize=12
+urxvt.boldFont:         xft:DejaVu Sans Mono:bold:pixelsize=12
+URxvt*background:       #181818
+URxvt.foreground:       #D6D6D6
+urxvt.depth: 32
+!URxvt.background: rgba:2400/2400/2400/f4aa
+!urxvt.foreground: rgba:ffff/ffff/ffff/cccc
+URxvt.tintColor: #D4D4D4
+URxvt.borderLess: false
+URxvt.InternalBorder: 0
+URxvt.externalBorder: 0
+URxvt.borderColor: #181818
+!URxvt*iconFile:    //home/justas/.icons/AwOken/clear/24x24/apps/terminal.png
+!URxvt.perl-ext-common: default,clipboard
+!URxvt.perl-ext-common:  default,tabbed
+
+! vim: set filetype=xdefaults :
+! gjm scheme
+! *background: rgba:0000/0000/0000/dddd
+
+*cursorColor:   #cee318
+
+*background:    #1C1C1C
+*foreground:    #c5c5c5
+
+
+xterm*dynamicColors:    true
+xterm*background:      #151515
+xterm*foreground:      white
+xterm*utf8:             2
+xterm*eightBitInput:    true
+xterm*saveLines:        32767
+xterm*scrollTtyKeypress:       true
+xterm*scrollTtyOutput:  false
+xterm*scrollBar:        false
+xterm*loginShell:       true
+xterm*faceName:         Monospace:pixelsize=12
+xterm*jumpScroll:       true
+xterm*multiScroll:      true
+xterm*toolBar:          false
+xterm*geometry:                110x35
+
+! -----------------------------------------------------------------------------
+! ! File: gruvbox-dark.xresources
+! ! Description: Retro groove colorscheme generalized
+! ! Author: morhetz <morhetz@gmail.com>
+! ! Source: https://github.com/morhetz/gruvbox-generalized
+! ! Last Modified: 6 Sep 2014
+! !
+! -----------------------------------------------------------------------------
+!
+! ! hard contrast: *background: #1d2021
+ *background: #282828
+! ! soft contrast: *background: #32302f
+ *foreground: #ebdbb2
+! ! Black + DarkGrey
+ *color0:  #282828
+ *color8:  #928374
+! ! DarkRed + Red
+ *color1:  #cc241d
+ *color9:  #fb4934
+! ! DarkGreen + Green
+ *color2:  #98971a
+ *color10: #b8bb26
+! ! DarkYellow + Yellow
+ *color3:  #d79921
+ *color11: #fabd2f
+! ! DarkBlue + Blue
+ *color4:  #458588
+ *color12: #83a598
+! ! DarkMagenta + Magenta
+ *color5:  #b16286
+ *color13: #d3869b
+! ! DarkCyan + Cyan
+ *color6:  #689d6a
+ *color14: #8ec07c
+! ! LightGrey + White
+ *color7:  #a89984
+ *color15: #ebdbb2
