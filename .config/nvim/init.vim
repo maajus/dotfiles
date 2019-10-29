@@ -1,6 +1,5 @@
 
 
-
 call plug#begin('~/.vim/plugged')
 Plug 'fntlnz/atags.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -59,8 +58,8 @@ call plug#end()
 
 " Shortcut for checking if a plugin is loaded
 function! s:has_plugin(plugin)
-  let lookup = 'g:plugs["' . a:plugin . '"]'
-  return exists(lookup)
+    let lookup = 'g:plugs["' . a:plugin . '"]'
+    return exists(lookup)
 endfunction
 
 
@@ -90,14 +89,6 @@ set hlsearch    "hilight searches by default
 
 set wrap        "dont wrap lines
 set linebreak   "wrap lines at convenient points
-
-if v:version >= 703
-    "undo settings
-    set undodir=~/.vim/undofiles
-    set undofile
-
-    set colorcolumn=+1 "mark the ideal max text width
-endif
 
 set directory=~/.vim/swapfiles/
 
@@ -151,8 +142,20 @@ set scrolloff=3
 set sidescrolloff=15
 set sidescroll=1
 
+" key repeat delay
+set timeoutlen=1000 ttimeoutlen=0
+set clipboard=unnamed
+set clipboard+=unnamedplus
+set path=.,,..,../..,./*,./*/*,../*
+
+"undo settings
+set undodir=~/.vim/undofiles
+set undofile
+set colorcolumn=+1 "mark the ideal max text width
+
+
 if $TERM == "xterm-256color"
-  set t_Co=256
+    set t_Co=256
 endif
 
 
@@ -163,105 +166,13 @@ filetype indent on
 colorscheme gruvbox
 syntax on "turn on syntax highlighting
 
-iabbrev teh the
-
-
-let g:airline_theme='base16'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_powerline_fonts = 1
-
-"statusline setup
-set statusline =%#identifier#
-set statusline+=[%f]    "tail of the filename
-set statusline+=%*
-set statusline+=%y      "filetype
-"read only flag
-set statusline+=%#identifier#
-set statusline+=%r
-set statusline+=%*
-"modified flag
-set statusline+=%#warningmsg#
-set statusline+=%m
-set statusline+=%*
-"set statusline+=%{fugitive#statusline()}
-"display a warning if &et is wrong, or we have mixed-indenting
-set statusline+=%#error#
-set statusline+=%*
-set statusline+=%{StatuslineLongLineWarning()}
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-"display a warning if &paste is set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\%P    "percent through file
-"set laststatus=2
-
-"nerdtree settings
-let g:NERDTreeMouseMode = 2
-let g:NERDTreeWinSize = 40
-let g:NERDTreeMinimalUI=1
-
-"source project specific config files
-runtime! projects/**/*.vim
-
-"dont load csapprox if we no gui support - silences an annoying warning
-if !has("gui")
-    let g:CSApprox_loaded = 1
-endif
-
-"gutentags settings
-let g:gutentags_exclude = ['vendor/*', 'tmp/*', 'log/*', 'coverage/*', 'doc/*']
-
-"jump to last cursor position when opening a file
-"dont do it when writing a commit log entry
-autocmd BufReadPost * call SetCursorPosition()
-function! SetCursorPosition()
-    if &filetype !~ 'svn\|commit\c'
-        if line("'\"") > 0 && line("'\"") <= line("$")
-            exe "normal! g`\""
-            normal! zz
-        endif
-    else
-        call cursor(1,1)
-    endif
-endfunction
-" Start ctrlp from current dir
-let g:ctrlp_working_path_mode = 0
-" key repeat delay
-set timeoutlen=1000 ttimeoutlen=0
-set clipboard=unnamed
-set clipboard+=unnamedplus
-set path=.,,..,../..,./*,./*/*,../*
-
-"Disable ycm confirmation
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 1
-let g:ycm_always_populate_location_list = 1 "default 0
-let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-let g:ycm_complete_in_strings = 1 "default 1
-let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
-let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
-let g:ycm_server_log_level = 'info' "default info
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_show_diagnostics_ui = 0
-
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-
 
 
 " Key mappings
 " ------------------------------------------------------------------------------
+
+"change the mapleader from \ to ,
+let mapleader = ","
 
 " Remap annoying mistakes to something useful
 cnoreabbrev W! w!
@@ -325,12 +236,9 @@ nnoremap <f4> :NERDTreeFind<cr>
 nnoremap <c-f> :Buffers<cr>
 nnoremap <c-p> :Files<cr>
 
-"make <c-l> clear the highlight as well as redraw
-nnoremap <C-L> :nohls<CR><C-L>
-inoremap <C-L> <C-O>:nohls<CR>
+"make <leader>l clear the highlight as well as redraw
+nnoremap <leader>l :nohls<CR><C-L>
 
-"map Q to something useful
-noremap Q gq
 "make Y consistent with C and D
 nnoremap Y y$
 
@@ -344,8 +252,6 @@ nnoremap <silent> <m-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <m-w> :TmuxNavigatePrevious<cr>
 
 
-"change the mapleader from \ to ,
-let mapleader = ","
 " Switch buffer
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
@@ -358,30 +264,34 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
+
 "move between windows
-map <a-j> <c-w>j
-map <a-k> <c-w>k
-map <a-l> <c-w>l
-map <a-h> <c-w>h
+"map <a-j> <c-w>j
+"map <a-k> <c-w>k
+"map <a-l> <c-w>l
+"map <a-h> <c-w>h
+
 "search selected text in visual mode
 vnoremap // y/<C-R>"<CR>
+
 "silent make command
 nnoremap <Leader>m :wa <Bar> :Make -s -j4<CR>
+
 "ycm maps
 nnoremap <Leader>i :YcmCompleter GoToInclude<CR> nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
+
 "remove trailing whitespaces
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
 " close buffer without window
 map <leader>q :bp<bar>sp<bar>bn<bar>bd<CR>
-" Better copy paste
-" set pastetoggle=<F2>
+
 " resize current buffer by +/- 5
 nnoremap <leader><left> :vertical resize -5<cr>
 nnoremap <leader><down> :resize +5<cr>
 nnoremap <leader><up> :resize -5<cr>
 nnoremap <leader><right> :vertical resize +5<cr>
 
-nnoremap <F11> :YcmForceCompileAndDiagnostics <CR>
 " replace selected text in visual mode
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
@@ -389,8 +299,6 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 nnoremap <leader>p :pu<CR>
 
 
-" fast header source switch
-map <F4> :call altr#forward()<CR>
 map <Leader>t :call atags#generate()<cr>
 
 
@@ -400,86 +308,152 @@ map <Leader>t :call atags#generate()<cr>
 " Plugin config
 " ------------------------------------------------------------------------------
 if s:has_plugin('bufexplorer')
-  let g:bufExplorerDisableDefaultKeyMapping = 1
-  let g:bufExplorerShowNoName = 1
-  nnoremap <leader>b :BufExplorer<cr>
+    let g:bufExplorerDisableDefaultKeyMapping = 1
+    let g:bufExplorerShowNoName = 1
+    nnoremap <leader>b :BufExplorer<cr>
 endif
 
 if s:has_plugin('vim-javascript')
-  let g:javascript_plugin_flow=1
-  let g:javascript_plugin_jsdoc=1
+    let g:javascript_plugin_flow=1
+    let g:javascript_plugin_jsdoc=1
 endif
 
 if s:has_plugin('vim-grepper')
-  nnoremap <leader>g :Grepper -tool ag<cr>
-  nnoremap <leader>G :Grepper -tool ag -buffers<cr>
-  nmap gs <plug>(GrepperOperator)
-  xmap gs <plug>(GrepperOperator)
-  let g:grepper = {}
-  let g:grepper.stop = 2500
-  let g:grepper.highlight = 1
+    nnoremap <leader>g :Grepper -tool ag<cr>
+    nnoremap <leader>G :Grepper -tool ag -buffers<cr>
+    nmap gs <plug>(GrepperOperator)
+    xmap gs <plug>(GrepperOperator)
+    let g:grepper = {}
+    let g:grepper.stop = 2500
+    let g:grepper.highlight = 1
 end
 
 if s:has_plugin('vim-better-whitespace')
-  autocmd BufEnter * EnableStripWhitespaceOnSave
-  highlight ExtraWhitespace ctermbg=red guibg = #e06c75
+    autocmd BufEnter * EnableStripWhitespaceOnSave
+    highlight ExtraWhitespace ctermbg=red guibg = #e06c75
 endif
 
 if s:has_plugin('vim-polyglot')
-  let g:polyglot_disabled = ['markdown', 'scss']
-  let g:vue_disable_pre_processors = 1
-  let g:jsx_ext_required = 0
+    let g:polyglot_disabled = ['markdown', 'scss']
+    let g:vue_disable_pre_processors = 1
+    let g:jsx_ext_required = 0
 endif
 
 if s:has_plugin('ale')
- let g:ale_sign_error = 'x'
- let g:ale_sign_warning = '~'
- let airline#extensions#ale#error_symbol = ''
- let airline#extensions#ale#warning_symbol = ''
- let g:ale_echo_msg_format = '%linter% | %s (%code%)'
- let g:ale_lint_on_text_changed = 'always'
- let g:ale_linters = {'html': [], 'cucumber': [], 'typescript': ['tslint']}
- " Fix JavaScript code with ESlint
- let g:ale_fixers = {}
- let g:ale_fixers.javascript = ['eslint']
- let g:ale_fix_on_save = 1
- nmap ]e <Plug>(ale_next)
- nmap [e <Plug>(ale_previous)
+    let g:ale_sign_error = 'x'
+    let g:ale_sign_warning = '~'
+    let airline#extensions#ale#error_symbol = ''
+    let airline#extensions#ale#warning_symbol = ''
+    let g:ale_echo_msg_format = '%linter% | %s (%code%)'
+    let g:ale_lint_on_text_changed = 'always'
+    let g:ale_linters = {'html': [], 'cucumber': [], 'typescript': ['tslint']}
+    " Fix JavaScript code with ESlint
+    let g:ale_fixers = {}
+    let g:ale_fixers.javascript = ['eslint']
+    let g:ale_fix_on_save = 1
+    nmap ]e <Plug>(ale_next)
+    nmap [e <Plug>(ale_previous)
 endif
 
 if s:has_plugin('vim-closetag')
-  let g:closetag_filenames = "*.html,*.js,*.jsx"
-  let g:closetag_close_shortcut = ''
+    let g:closetag_filenames = "*.html,*.js,*.jsx"
+    let g:closetag_close_shortcut = ''
 endif
 
 if s:has_plugin('mileszs/ack.vim')
-  if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-    let g:ack_qhandler = "botright copen 40"
-  endif
+    if executable('ag')
+        let g:ackprg = 'ag --vimgrep'
+        let g:ack_qhandler = "botright copen 40"
+    endif
 endif
 
 
+
+    let g:airline_theme='base16'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#fnamemod = ':t'
+    let g:airline_powerline_fonts = 1
+
+    "statusline setup
+    set statusline =%#identifier#
+    set statusline+=[%f]    "tail of the filename
+    set statusline+=%*
+    set statusline+=%y      "filetype
+    "read only flag
+    set statusline+=%#identifier#
+    set statusline+=%r
+    set statusline+=%*
+    "modified flag
+    set statusline+=%#warningmsg#
+    set statusline+=%m
+    set statusline+=%*
+    "set statusline+=%{fugitive#statusline()}
+    "display a warning if &et is wrong, or we have mixed-indenting
+    set statusline+=%#error#
+    set statusline+=%*
+    set statusline+=%{StatuslineLongLineWarning()}
+    set statusline+=%#warningmsg#
+    "set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+    "display a warning if &paste is set
+    set statusline+=%#error#
+    set statusline+=%{&paste?'[paste]':''}
+    set statusline+=%*
+
+    set statusline+=%=      "left/right separator
+    set statusline+=%c,     "cursor column
+    set statusline+=%l/%L   "cursor line/total lines
+    set statusline+=\%P    "percent through file
+    "set laststatus=2
+
 if s:has_plugin('fzf.vim')
- let g:fzf_colors =
-  \ { 'fg':      ['fg', 'Normal'],
-    \ 'bg':      ['bg', 'Normal'],
-    \ 'hl':      ['fg', 'Boolean'],
-    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-    \ 'hl+':     ['fg', 'Statement'],
-    \ 'info':    ['fg', 'PreProc'],
-    \ 'border':  ['fg', 'Ignore'],
-    \ 'prompt':  ['fg', 'Conditional'],
-    \ 'pointer': ['fg', 'Exception'],
-    \ 'marker':  ['fg', 'Keyword'],
-    \ 'spinner': ['fg', 'Label'],
-    \ 'header':  ['fg', 'Comment'] }
+    let g:fzf_colors =
+                \ { 'fg':      ['fg', 'Normal'],
+                \ 'bg':      ['bg', 'Normal'],
+                \ 'hl':      ['fg', 'Boolean'],
+                \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+                \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+                \ 'hl+':     ['fg', 'Statement'],
+                \ 'info':    ['fg', 'PreProc'],
+                \ 'border':  ['fg', 'Ignore'],
+                \ 'prompt':  ['fg', 'Conditional'],
+                \ 'pointer': ['fg', 'Exception'],
+                \ 'marker':  ['fg', 'Keyword'],
+                \ 'spinner': ['fg', 'Label'],
+                \ 'header':  ['fg', 'Comment'] }
 endif
 
 if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag with ack.vim - https://github.com/ggreer/the_silver_searcher#vim
-  let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag with ack.vim - https://github.com/ggreer/the_silver_searcher#vim
+    let g:ackprg = 'ag --smart-case --nogroup --nocolor --column'
+endif
+
+if s:has_plugin('scrooloose/nerdtree')
+    let g:NERDTreeMouseMode = 2
+    let g:NERDTreeWinSize = 40
+    let g:NERDTreeMinimalUI=1
+endif
+
+
+if s:has_plugin('Valloric/YouCompleteMe')
+    "Disable ycm confirmation
+    let g:ycm_confirm_extra_conf = 0
+    let g:ycm_enable_diagnostic_signs = 1
+    let g:ycm_enable_diagnostic_highlighting = 1
+    let g:ycm_always_populate_location_list = 1 "default 0
+    let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+    let g:ycm_complete_in_strings = 1 "default 1
+    let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
+    let g:ycm_server_use_vim_stdout = 0 "default 0 (logging to console)
+    let g:ycm_server_log_level = 'info' "default info
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_show_diagnostics_ui = 0
+
+    let g:cpp_class_scope_highlight = 1
+    let g:cpp_member_variable_highlight = 1
+    let g:cpp_class_decl_highlight = 1
+
 endif
