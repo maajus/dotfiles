@@ -18,17 +18,16 @@ Plug 'vim-airline/vim-airline-themes'
 " Search
 " ------------------------------------------------------------------------------
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-slash'
+"Plug 'junegunn/vim-slash'
 Plug 'mhinz/vim-grepper'
 Plug 'mileszs/ack.vim'
 Plug 'numkil/ag.nvim'
 
 " Syntax and highlighting for every language
 " ------------------------------------------------------------------------------
-Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
-Plug 'maxmellon/vim-jsx-pretty'
+Plug 'sheerun/vim-polyglot'
 
 " HTML/CSS
 " ------------------------------------------------------------------------------
@@ -36,7 +35,7 @@ Plug 'ap/vim-css-color', {'for': ['css', 'scss', 'vue']} " Highlight css colors 
 Plug 'mattn/emmet-vim' " Easy HTML and CSS generation
 Plug 'alvan/vim-closetag' " Automatically add a closing HTML tag
 Plug 'tpope/vim-haml' " Better Scss highlighting than polyglot
-Plug 'mxw/vim-jsx'
+"Plug 'mxw/vim-jsx'
 
 " JavaScript
 " ------------------------------------------------------------------------------
@@ -329,7 +328,6 @@ if s:has_plugin('vim-grepper')
 end
 
 if s:has_plugin('vim-better-whitespace')
-    autocmd BufEnter * EnableStripWhitespaceOnSave
     highlight ExtraWhitespace ctermbg=red guibg = #e06c75
 endif
 

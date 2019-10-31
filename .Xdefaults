@@ -25,37 +25,45 @@ Xft.antialias:  true
 !Xft.rgba:       rgb
 Xft.hinting:    true
 !Xft.hinstyle:   hintslight
-!URxvt.letterSpace:	 -1
+!URxvt.letterSpace:	 -2
 
-urxvt.font:             xft:DejaVu Sans Mono:pixelsize=12
-urxvt.boldFont:         xft:DejaVu Sans Mono:bold:pixelsize=12
-URxvt*background:       #181818
-URxvt.foreground:       #D6D6D6
-urxvt.depth: 32
+URxvt.boldfont: xft:Ubuntu Mono derivative Powerline Bold:pixelsize=16:antialias=true
+!URxvt.boldfont: xft:Consolas for Powerline Bold:pixelsize=13:antialias=true
+!urxvt.font: xft:Consolas for Powerline:pixelsize=13:antialias=true, \
+urxvt.font: xft:Ubuntu Mono derivative Powerline:pixelsize=16:antialias=true, \
+            xft:WenQuanYi Bitmap Song:size=8, \
+            xft:FreeSerif:style=Regular, \
+            xft:unifont:style=Medium:antialias=false
+
+!URxvt.boldfont: xft:Inconsolata for Powerline:bold:pixelsize=16:antialias=true
+!URxvt.font: xft:Inconsolata for Powerline:pixelsize=16:antialias=true
+!URxvt.boldfont: xft:Inconsolata-dz for Powerline:bold:pixelsize=13:antialias=true
+!URxvt.font: xft:Inconsolata-dz for Powerline:pixelsize=12:antialias=true
+
+
+!rxvt.depth: 32
 !URxvt.background: rgba:2400/2400/2400/f4aa
 !urxvt.foreground: rgba:ffff/ffff/ffff/cccc
 URxvt.tintColor: #D4D4D4
 URxvt.borderLess: false
 URxvt.InternalBorder: 0
 URxvt.externalBorder: 0
-URxvt.borderColor: #181818
+URxvt.borderColor: #282828
 !URxvt*iconFile:    //home/justas/.icons/AwOken/clear/24x24/apps/terminal.png
 !URxvt.perl-ext-common: default,clipboard
 !URxvt.perl-ext-common:  default,tabbed
-
+!xterm*metaSendsEscape: true
+!URxvt*meta8:true
 ! vim: set filetype=xdefaults :
 ! gjm scheme
 ! *background: rgba:0000/0000/0000/dddd
 
 *cursorColor:   #cee318
 
-*background:    #1C1C1C
-*foreground:    #c5c5c5
-
 
 xterm*dynamicColors:    true
-xterm*background:      #151515
-xterm*foreground:      white
+xterm*background:      #282828
+xterm*foreground:      #ebdbb2
 xterm*utf8:             2
 xterm*eightBitInput:    true
 xterm*saveLines:        32767
