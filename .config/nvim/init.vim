@@ -9,6 +9,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
 Plug 'vim-scripts/a.vim'
+Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
 
 " Theme
 " ------------------------------------------------------------------------------
@@ -51,7 +52,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'matze/vim-move' " Move blocks of code with ALT+j/k
 Plug 'ntpeters/vim-better-whitespace' " Whitespace removal
 Plug 'jlanzarotta/bufexplorer' " Manage buffers in a list
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -186,6 +187,10 @@ cnoreabbrev Qa q
 cnoreabbrev Qall qall
 
 
+" save file
+nnoremap  <leader>s w
+noremap <leader>s :update<CR>
+noremap <leader>S :wa<CR>
 " Delete line but preserve the space
 nnoremap dD S<Esc>
 
@@ -254,8 +259,8 @@ nnoremap <silent> <m-w> :TmuxNavigatePrevious<cr>
 " Switch buffer
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
-map <C-K> :bnext<CR>
-map <C-J> :bprev<CR>
+"map <C-K> :bnext<CR>
+"map <C-J> :bprev<CR>
 "map <C-L> :tabn<CR>
 "map <C-H> :tabp<CR>
 " Get off my lawn
@@ -265,16 +270,16 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 "move between windows
-"map <a-j> <c-w>j
-"map <a-k> <c-w>k
-"map <a-l> <c-w>l
-"map <a-h> <c-w>h
+map <C-j> <c-w>j
+map <C-k> <c-w>k
+map <C-l> <c-w>l
+map <C-h> <c-w>h
 
 "search selected text in visual mode
 vnoremap // y/<C-R>"<CR>
 
 "silent make command
-nnoremap <Leader>m :wa <Bar> :Make -s -j4<CR>
+nnoremap <Leader>m :wa <Bar> :Make -j4<CR>
 
 "ycm maps
 nnoremap <Leader>i :YcmCompleter GoToInclude<CR> nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
@@ -343,12 +348,12 @@ if s:has_plugin('ale')
     let airline#extensions#ale#error_symbol = ''
     let airline#extensions#ale#warning_symbol = ''
     let g:ale_echo_msg_format = '%linter% | %s (%code%)'
-    let g:ale_lint_on_text_changed = 'always'
+    "let g:ale_lint_on_text_changed = 'always'
     let g:ale_linters = {'html': [], 'cucumber': [], 'typescript': ['tslint']}
     " Fix JavaScript code with ESlint
-    let g:ale_fixers = {}
-    let g:ale_fixers.javascript = ['eslint']
-    let g:ale_fix_on_save = 1
+    "let g:ale_fixers = {}
+    "let g:ale_fixers.javascript = ['eslint']
+    "let g:ale_fix_on_save = 1
     nmap ]e <Plug>(ale_next)
     nmap [e <Plug>(ale_previous)
 endif
@@ -435,11 +440,11 @@ if s:has_plugin('scrooloose/nerdtree')
 endif
 
 
-if s:has_plugin('Valloric/YouCompleteMe')
+"if s:has_plugin('Valloric/YouCompleteMe')
     "Disable ycm confirmation
     let g:ycm_confirm_extra_conf = 0
-    let g:ycm_enable_diagnostic_signs = 1
-    let g:ycm_enable_diagnostic_highlighting = 1
+    let g:ycm_enable_diagnostic_signs = 0
+    let g:ycm_enable_diagnostic_highlighting = 0
     let g:ycm_always_populate_location_list = 1 "default 0
     let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
     let g:ycm_complete_in_strings = 1 "default 1
@@ -454,4 +459,4 @@ if s:has_plugin('Valloric/YouCompleteMe')
     let g:cpp_member_variable_highlight = 1
     let g:cpp_class_decl_highlight = 1
 
-endif
+"endif
