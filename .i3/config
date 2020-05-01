@@ -3,14 +3,14 @@
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard(1).
 #
- 
+
 # i3 config file (v4)
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
- 
+
 set $mod Mod4
 set $mod1 Mod1
- 
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -20,36 +20,38 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # chose a FreeType font, such as:
 # font pango:DejaVu Sans Mono 10
 font pango:Neuropolitical 8
- 
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
- 
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+minus scratchpad show
- 
+
 # kill focused window
 bindsym $mod+Shift+q kill
- 
+
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
- 
+
 # change focus
 #bindsym $mod+j focus left
 #bindsym $mod+k focus down
 #bindsym $mod+l focus up
 #bindsym $mod+semicolon focus right
- 
+#
+
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
- 
+
 # move focused window
 bindsym $mod+Shift+j move left
 bindsym $mod+Shift+k move down
@@ -60,36 +62,36 @@ bindsym $mod+Shift+semicolon move right
 
 bindsym $mod+j move workspace to output right
 bindsym $mod+l move workspace to output left
- 
+
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
- 
+
 # split in horizontal orientation
 bindsym $mod+v split h
- 
+
 # split in vertical orientation
 bindsym $mod+h split v
- 
+
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
- 
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
- 
+
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
- 
+
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
- 
+
 # focus the parent container
 bindsym $mod+a focus parent
- 
+
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -116,7 +118,7 @@ bindsym $mod+KP_7 workspace 7: Movie
 bindsym $mod+KP_8 workspace 8
 bindsym $mod+KP_9 workspace 9
 bindsym $mod+KP_0 workspace 10
- 
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1: Net
 bindsym $mod+Shift+2 move container to workspace 2: Term
@@ -141,18 +143,18 @@ bindsym $mod+Shift+KP_9 move container to workspace 9
 bindsym $mod+Shift+KP_0 move container to workspace 10
 
 workspace 10 output eDP1
- 
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
- 
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
- 
+
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -161,26 +163,26 @@ mode "resize" {
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
- 
+
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
- 
+
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
- 
+
 bindsym $mod+r mode "resize"
 
- 
+
 # Custom Binds
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
-bindsym $mod+n exec xdotool getwindowfocus key --window %1 click 2 
+bindsym $mod+n exec xdotool getwindowfocus key --window %1 click 2
 bindsym $mod+$mod1+x exec i3lock -d -c 111111
 bindsym XF86AudioStop exec mpc stop
 bindsym XF86AudioPlay exec mpc toggle
@@ -206,43 +208,43 @@ bindsym $mod+Shift+Tab workspace prev
 bindsym $mod+Prior workspace next
 bindsym $mod+Next workspace prev
 #bindsym $mod+Shift+Down workspace prev
- 
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command $HOME/scripts/i3bar_conky.sh
         position top
-       
-       
+
+
         colors {
                         background #000000
-                       
+
                         focused_workspace #333333 #222222 #36D7B7
                         inactive_workspace #111111 #000000 #BFBFBF
-       
+
         }
-       
+
 }
- 
+
 #Windows
 new_window pixel 2
 new_float 1pixel
- 
- 
+
+
 #colors
 #class                           border          backgr.         text            indicator
 client.focused                  #252525         #333333         #36D7B7         #ffffff
 client.unfocused                #252525         #333333         #ffffff        #ffffff
 client.focused_inactive 		#252525         #333333         #36D7B7         #ffffff
 client.urgent                   #252525         #333333         #ff0000         #ffffff
- 
+
  #BFBFBF
- 
+
 force_xinerama yes
 hide_edge_borders both
 exec --no-startup-id sh ~/.fehbg
 
-# startup programs 
+# startup programs
 #exec parcellite
 exec xbindkeys
 exec trackpad-toggle.sh
@@ -259,7 +261,7 @@ exec --no-startup-id /home/justas/scripts/touchstyk.sh
 #exec --no-startup-id i3-msg 'workspace 3: Torr; exec urxvt -e rtorrent'
 #exec --no-startup-id i3-msg 'workspace 3: FM; exec thunar'
 
-# starting a specially named term automatically 
+# starting a specially named term automatically
 #exec --no-startup-id urxvt -name scratchpad -e /usr/bin/nano
 # move this to scratchpad, if active
 #for_window [class="URxvt" instance="scratchpad"] move scratchpad
@@ -276,7 +278,7 @@ bindsym $mod1+Shift exec /home/justas/scripts/lt.sh
 
 #firefox
 #bindsym $mod+F1 exec chromium
-bindsym $mod+F1 exec chromium
+bindsym $mod+F1 exec slock
 #smplayer
 bindsym $mod+m exec smplayer
 bindsym XF86Sleep exec systemctl suspend
