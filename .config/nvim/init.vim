@@ -1,4 +1,5 @@
 
+let g:polyglot_disabled = ['markdown', 'scss']
 
 call plug#begin('~/.vim/plugged')
 Plug 'fntlnz/atags.vim'
@@ -54,6 +55,10 @@ Plug 'ntpeters/vim-better-whitespace' " Whitespace removal
 Plug 'jlanzarotta/bufexplorer' " Manage buffers in a list
 "Plug 'dense-analysis/ale'
 
+" Other
+" ------------------------------------------------------------------------------
+Plug 'chmanie/termdebugx.nvim'
+
 call plug#end()
 
 " Shortcut for checking if a plugin is loaded
@@ -97,6 +102,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set autoindent
+set tabstop=4     " (ts) width (in spaces) that a <tab> is displayed as
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -162,6 +168,7 @@ endif
 "load ftplugins and indent files
 filetype plugin on
 filetype indent on
+filetype plugin indent on
 
 colorscheme gruvbox
 syntax on "turn on syntax highlighting
@@ -279,7 +286,7 @@ map <C-h> <c-w>h
 vnoremap // y/<C-R>"<CR>
 
 "silent make command
-nnoremap <Leader>m :wa <Bar> :Make -j4<CR>
+nnoremap <Leader>m :wa <Bar> :Make -j8<CR>
 
 "ycm maps
 nnoremap <Leader>i :YcmCompleter GoToInclude<CR> nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
@@ -305,7 +312,9 @@ nnoremap <leader>p :pu<CR>
 
 map <Leader>t :call atags#generate()<cr>
 
-
+"debuger
+let g:termdebugger = "arm-none-eabi-gdb"
+packadd termdebug
 
 
 
@@ -337,7 +346,6 @@ if s:has_plugin('vim-better-whitespace')
 endif
 
 if s:has_plugin('vim-polyglot')
-    let g:polyglot_disabled = ['markdown', 'scss']
     let g:vue_disable_pre_processors = 1
     let g:jsx_ext_required = 0
 endif
@@ -376,6 +384,7 @@ endif
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#fnamemod = ':t'
     let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tagbar#enabled = 0
 
     "statusline setup
     set statusline =%#identifier#
