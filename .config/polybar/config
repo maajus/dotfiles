@@ -1,3 +1,4 @@
+#!/bin/sh
 ;--------;
 ; COLORS ;
 ;--------;
@@ -239,7 +240,7 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ;ramp-foreground = ${colors.foreground-alt}
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
 
 
 
