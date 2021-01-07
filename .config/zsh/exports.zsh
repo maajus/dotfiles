@@ -4,11 +4,18 @@ CASE_SENSITIVE="true"
 
 zle_highlight=('paste:none')
 
+
+TERM=rxvt-256color
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=241'
+
 # Which plugins would you like to load?
 plugins=(
   git
   zsh-autosuggestions
+  autojump
 )
+
+unsetopt share_history
 
 export ZSH="/home/$USER/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh

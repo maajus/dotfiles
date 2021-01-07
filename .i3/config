@@ -290,6 +290,8 @@ bindsym $mod+m exec smplayer
 bindsym XF86Sleep exec systemctl suspend
 bindsym $mod+P exec pcmanfm
 bindsym $mod+g exec geany
+bindsym XF86TouchpadOn exec synclient TouchpadOff=0
+bindsym XF86TouchpadOff exec synclient TouchpadOff=1
 
 #gaps
 #for_window [class="^.*"] border pixel 0

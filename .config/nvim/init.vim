@@ -7,12 +7,14 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-dispatch'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'scrooloose/nerdcommenter'
-Plug 'majutsushi/tagbar'
+"Plug 'scrooloose/nerdcommenter'
+"Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'bling/vim-airline'
 Plug 'vim-scripts/a.vim'
 Plug 'sakhnik/nvim-gdb', { 'do': ':!./install.sh \| UpdateRemotePlugins' }
-
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
 " Theme
 " ------------------------------------------------------------------------------
 Plug 'morhetz/gruvbox'
@@ -101,9 +103,9 @@ set directory=~/.vim/swapfiles/
 "default indent settings
 set shiftwidth=4
 set softtabstop=4
-set expandtab
 set autoindent
 set tabstop=4     " (ts) width (in spaces) that a <tab> is displayed as
+set expandtab
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -351,6 +353,12 @@ if s:has_plugin('vim-polyglot')
     let g:jsx_ext_required = 0
 endif
 
+
+
+if s:has_plugin('nerdcommenter')
+    let g:NERDUsePlaceHolders = 0
+endif
+
 if s:has_plugin('ale')
     let g:ale_sign_error = 'x'
     let g:ale_sign_warning = '~'
@@ -594,3 +602,31 @@ endif
     let g:cpp_class_decl_highlight = 1
 
 "endif
+
+
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+
+let g:tagbar_type_javascript = {
+      \ 'ctagstype': 'javascript',
+      \ 'kinds': [
+      \ 'A:arrays',
+      \ 'P:properties',
+      \ 'T:tags',
+      \ 'O:objects',
+      \ 'G:generator functions',
+      \ 'F:functions',
+      \ 'C:constructors/classes',
+      \ 'M:methods',
+      \ 'V:variables',
+      \ 'I:imports',
+      \ 'E:exports',
+      \ 'S:styled components'
+      \ ]}
+
